@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+
+    <ul class="navbar-nav">
+        <a class="nav-link active" href="{{ path('resetWachtwoord') }}">Wachtwoord resetten</a>
+    </ul>
+
+{% endblock %}
+
+
+{% block body %}
+
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endblock %}

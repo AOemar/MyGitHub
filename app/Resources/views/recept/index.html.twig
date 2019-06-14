@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Recepts list</h1>
+
+    <table class="table table-responsive-sm table-striped ">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naam</th>
+                <th>Prijs per liter</th>
+                <th>Bereidingswijze</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recept in recepts %}
+            <tr>
+                <td><a href="{{ path('show_recept', { 'id': recept.id }) }}">{{ recept.id }}</a></td>
+                <td>{{ recept.naam }}</td>
+                <td>€{{recept.prijsPerLiter|number_format(2, ',', '.') }}</td>
+                <td>{{ recept.bereidingswijze }}</td>
+                <td>
+
+                    <a href="{{ path('show_recept', { 'id': recept.id }) }}" class="btn btn-primary">Show</a>
+
+                    <a href="{{ path('show_recept', { 'id': recept.id }) }}" class="btn btn-info">Edit</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('new_recept') }}" class="btn btn-primary">Create a new recept</a>
+
+{% endblock %}

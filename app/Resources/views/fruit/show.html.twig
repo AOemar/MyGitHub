@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fruit</h1>
+
+    <table class="table table-responsive table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fruit.id }}</td>
+            </tr>
+            <tr>
+                <th>Naam</th>
+                <td>{{ fruit.naam }}</td>
+            </tr>
+            <tr>
+                <th>Seizoen</th>
+                <td>{{ fruit.seizoen }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+            {{ form_start(delete_form) }}
+                <a href="{{ path('edit_fruit', { 'id': fruit.id }) }}" class="btn btn-info">Edit</a>
+
+                <input type="submit" value="Delete" class="btn btn-danger">
+
+                <a href="{{ path('fruit_homepage') }}" class="btn btn-primary">Back to the list</a>
+
+
+            {{ form_end(delete_form) }}
+
+{% endblock %}

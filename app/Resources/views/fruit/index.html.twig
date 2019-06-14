@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+    <ul class="navbar-nav navbar-right">
+        <a class="nav-link active" href="{{ path('login') }}">Inloggen </a>
+    </ul>
+{% endblock %}
+
+{% block body %}
+        <h1>Fruits list</h1>
+
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Naam</th>
+                <th>Seizoen</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for fruit in fruits %}
+                <tr>
+                    <td><img src="{{ asset('images/'~ fruit.naam ~'.jpg') }}" style="max-width: 50px; max-height: 50px;"/></td>
+                    <td>{{ fruit.naam }}</td>
+                    <td>{{ fruit.seizoen }}</td>
+                    <td>
+                        <a href="{{ path('delete_fruit', { 'id': fruit.id }) }}" class="btn btn-danger">Delete</a>
+
+                        <a href="{{ path('edit_fruit', { 'id': fruit.id }) }}" class="btn btn-info">Edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('new_fruit') }}" class="btn btn-primary">Create a new fruit</a>
+{% endblock %}

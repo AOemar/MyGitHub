@@ -1,0 +1,64 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        chain_provider:
+            chain:
+                providers: [database, in_memory]
+
+        database:
+            entity:
+                class: AppBundle:User
+                property: username
+
+        in_memory:
+            memory:
+                users:
+                    admin:
+                        password: $2y$13$e7E7yGV4D8Nxsf5zp.DaIOOvMGEeqHl3jq9fG5WtYpRWXnEDwRpd2
+                        roles: 'ROLE_ADMIN'
+
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            http_basic: ~
+
+
+        main:
+            anonymous: ~
+
+            logout_on_user_change: true
+
+            form_login:
+                login_path: login
+                check_path: login
+                provider: chain_provider
+                success_handler: app.login_handler
+
+            logout:
+                path: /logout
+                target: /fruit
+
+            # activate different ways to authenticate
+
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #http_basic: ~
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            #form_login: ~
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/user, role: ROLE_USER }
+        - { path: ^/ijsmaker, role: ROLE_IJSMAKER }

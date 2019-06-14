@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {#<link href="{{ asset ('css/bootstrap.min.css') }}" rel="stylesheet">#}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    </head>
+    <body>
+
+    <div class="container">
+        <div class="wrapper">
+            <h1>Venezia Ijssalon</h1>
+            <nav class="navbar navbar-expand-sm navbar-light bg-light">
+                <a class="navbar-brand" href="#">Venezia</a>
+
+                <!-- menu wordt een hamburger als het scherm kleiner wordt /-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item ">
+                            <a class="nav-link active" href="#">Home </a>
+                        </li>
+
+                        {#<!-- uitklapbaar submenu fruit /-->#}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownFruit" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false" >
+                                Fruit
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownFruit">
+                                <a class="dropdown-item" href="{{ path('fruit_homepage') }}">Overzicht</a>
+                                <a class="dropdown-item" href="{{ path('new_fruit') }}" >Nieuw..</a>
+                            </div>
+                        </li>
+
+                        <!-- uitklapbaar submenu recepten /-->
+                        {#<li class="nav-item dropdown">#}
+                            {#<a class="nav-link dropdown-toggle {% if link == 'recepten' %}active{% endif %}" href="#" id="navbarDropdownRecept" data-toggle="dropdown"#}
+                               {#aria-haspopup="true" aria-expanded="false" >#}
+                                {#Recepten#}
+                            {#</a>#}
+
+                            {#<div class="dropdown-menu" aria-labelledby="navbarDropdownRecept">#}
+                                {#<a class="dropdown-item" href="{{ path('admin_indexrecept') }}">Overzicht</a>#}
+                                {#<a class="dropdown-item" href="{{ path('admin_newrecept') }}" >Nieuw..</a>#}
+
+                            {#</div>#}
+                        {#</li>#}
+                        {#<!-- uitklapbaar submenu bestellingen /-->#}
+                        {#<li class="nav-item dropdown">#}
+                        {#<a class="nav-link dropdown-toggle {% if link == 'bestellingen' %}active{% endif %}" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"#}
+                        {#aria-haspopup="true" aria-expanded="false" >#}
+                        {#Bestellingen#}
+                        {#</a>#}
+                        {#<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">#}
+                        {#<a class="dropdown-item" href="#">Overzicht</a>#}
+                        {#<a class="dropdown-item" href="#">Nieuw..</a>#}
+                        {#<a class="dropdown-item" href="#">Nieuwe klant</a>#}
+
+                        {#</div>#}
+                        {#</li>#}
+                        {#<li class="nav-item">#}
+                            {#<a class="nav-link dropdown-toggle {% if link == 'user' %}active{% endif %}" href="#" id="navbarDropdownUser" data-toggle="dropdown"#}
+                               {#aria-haspopup="true" aria-expanded="false" >#}
+                                {#Ingelogd als {{ app.user.username }}#}
+                            {#</a>#}
+                            {#<div class="dropdown-menu" aria-labelledby="navbarDropdownUser">#}
+                                {#{% if is_granted('ROLE_IJSMAKER') %}#}
+                                    {#<a class="dropdown-item" href="{{ path('resetWachtwoord') }}" >Wachtwoord wijzigen</a>#}
+                                {#{% endif %}#}
+                                {#<a class="dropdown-item" href="{{ path('logout') }}">Uitloggen</a>#}
+                            {#</div>#}
+
+                        {#</li>#}
+                    </ul>
+                    {% block nav %}
+
+                    {% endblock %}
+
+                </div>
+            </nav>
+            <img src="{{ asset ('images/banner.jpg') }}" style="width: 100%; height: 200px;">
+        </div>
+
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset ('js/jquery-4.3.1.min.js') }}"></script>
+            <script src="{{ asset ('js/npm.js') }}"></script>
+            <script src="{{ asset ('js/bootstrap.bundle.js') }}"></script>
+            <script src="{{ asset ('js/bootstrap.js') }}"></script>
+
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        {% endblock %}
+    </div>
+
+
+    </body>
+</html>

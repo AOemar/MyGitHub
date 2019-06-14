@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Fruit edit</h1>
+
+        {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Opslaan" class="btn btn-info" />
+
+        <a href="{{ path('fruit_homepage') }}" class="btn btn-primary">Back to the list</a>
+        {{ form_end(edit_form) }}
+
+{% endblock %}
